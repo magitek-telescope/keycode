@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Keycode checker</title>
+<style>
+  html, body, #app {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(#212121, #000);
+    color: #666;
+    text-shadow: 0 10px 10px rgba(16, 16, 16, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20vw;
+    font-family: Monaco, sans-serif;
+    overflow: hidden;
+  }
+  .placeholder {
+    color: #555;
+    font-size: 40px;
+  }
+  textarea {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.0;
+  }
+</style>
+</head>
+<body>
+  <div id="app" @keydown="handleKeyDown">
+    <div v-if="keyCode">
+      {{keyCode}}
+    </div>
+    <div v-else class="placeholder">
+      Press any key...
+    </div>
+    <textarea ref="ta"></textarea>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        keyCode: null
+      }
+    },
+    mounted() {
+      this.$refs.ta.focus()
+    },
+    methods: {
+      handleKeyDown(event) {
+        this.keyCode = event.keyCode
+      }
+    }
+  })
+  </script>
+</body>
+</html>
